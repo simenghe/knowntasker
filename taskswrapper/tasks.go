@@ -1,7 +1,6 @@
 package taskswrapper
 
 import (
-	"fmt"
 	"io/ioutil"
 	"log"
 
@@ -32,7 +31,11 @@ func GetTasksService() (* tasks.Service, error){
 }
 
 // GetAllTasksLists fetches the user's lists
-func GetAllTasksLists(srv * tasks.Service) {
-	fmt.Println("Get Task List")
-	fmt.Println(srv)
+func GetAllTasksLists(srv * tasks.Service) (*tasks.TaskLists, error) {
+	userLists, err := srv.Tasklists.List().Do()
+	return userLists, err
+}
+
+func GetListItems(srv * tasks.Service){
+	
 }

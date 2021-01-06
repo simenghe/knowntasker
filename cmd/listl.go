@@ -32,8 +32,13 @@ var listlCmd = &cobra.Command{
 		if err != nil {
 			log.Fatal("Service Problem")
 		}
-		fmt.Println("listl called")
-		fmt.Println(srv)
+		userLists, err := taskswrapper.GetAllTasksLists(srv)
+		for i, list := range userLists.Items{
+			fmt.Printf("[%d] %s\n", i + 1, list.Title)
+		}
+		if err != nil {
+			log.Fatalf("Problem fetching UserLists")
+		}
 	},
 }
 
