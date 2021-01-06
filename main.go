@@ -15,7 +15,15 @@ limitations under the License.
 */
 package main
 
-import "github.com/simenghe/knowntasker/cmd"
+import (
+	"fmt"
+
+	"github.com/simenghe/knowntasker/cmd"
+)
+
+func Cane() {
+	fmt.Println("Good Morning")
+}
 
 func main() {
 	cmd.Execute()
