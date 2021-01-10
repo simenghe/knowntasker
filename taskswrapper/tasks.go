@@ -11,7 +11,7 @@ import (
 )
 
 // GetTasksService Creates the tasks service using the files
-func GetTasksService() (* tasks.Service, error){
+func GetTasksService() (*tasks.Service, error) {
 	b, err := ioutil.ReadFile("credentials.json")
 	if err != nil {
 		log.Fatalf("Unable to read client secret file: %v", err)
@@ -31,11 +31,22 @@ func GetTasksService() (* tasks.Service, error){
 }
 
 // GetAllTasksLists fetches the user's lists
-func GetAllTasksLists(srv * tasks.Service) (*tasks.TaskLists, error) {
+func GetAllTasksLists(srv *tasks.Service) (*tasks.TaskLists, error) {
 	userLists, err := srv.Tasklists.List().Do()
 	return userLists, err
 }
 
-func GetListItems(srv * tasks.Service){
-	
+// GetFirstTaskList fetches the first Task List from the user
+func GetFirstTaskList(srv *tasks.Service) (*tasks.TaskList, error) {
+	var firstList *tasks.TaskList
+	userLists, err := GetAllTasksLists(srv)
+	if len(userLists.Items) > 0 {
+		firstList = userLists.Items[0]
+	}
+	return firstList, err
+}
+
+// GetFirstTaskList Sends the list items
+func GetAllTaskListItems(srv *tasks.Service, id string) (*tasks.Tasks, error) {
+	return srv.Tasks.List(id).Do()
 }
