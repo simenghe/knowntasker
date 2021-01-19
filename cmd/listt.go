@@ -12,6 +12,9 @@ var listtCmd = &cobra.Command{
 	Short: "List the tasks of a single list. Use -number to specify the which list, default = 1",
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("listt called")
+		if len(args) > 0 {
+			fmt.Println(args[0])
+		}
 	},
 }
 
