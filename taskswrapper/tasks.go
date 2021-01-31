@@ -36,6 +36,16 @@ func GetAllTasksLists(srv *tasks.Service) (*tasks.TaskLists, error) {
 	return userLists, err
 }
 
+// GetTaskList returns TaskList object at index idx
+func GetTaskList(srv *tasks.Service, idx int) (*tasks.TaskList, error) {
+	var list *tasks.TaskList
+	userLists, err := GetAllTasksLists(srv)
+	if len(userLists.Items) > (idx - 1) {
+		list = userLists.Items[idx-1]
+	}
+	return list, err
+}
+
 // GetFirstTaskList fetches the first Task List from the user
 func GetFirstTaskList(srv *tasks.Service) (*tasks.TaskList, error) {
 	var firstList *tasks.TaskList
