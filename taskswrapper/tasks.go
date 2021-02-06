@@ -1,6 +1,7 @@
 package taskswrapper
 
 import (
+	"fmt"
 	"io/ioutil"
 	"log"
 
@@ -38,10 +39,13 @@ func GetAllTasksLists(srv *tasks.Service) (*tasks.TaskLists, error) {
 
 // GetTaskList returns TaskList object at index idx
 func GetTaskList(srv *tasks.Service, idx int) (*tasks.TaskList, error) {
-	var list *tasks.TaskList
+	var list *tasks.TaskList = nil
 	userLists, err := GetAllTasksLists(srv)
 	if len(userLists.Items) > (idx - 1) {
+		fmt.Println("Spent")
 		list = userLists.Items[idx-1]
+	} else {
+		log.Fatalf("List ID out of range!")
 	}
 	return list, err
 }
