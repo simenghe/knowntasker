@@ -18,7 +18,6 @@ var listtCmd = &cobra.Command{
 		if err != nil {
 			log.Fatal("Service Problem")
 		}
-
 		if len(args) > 0 {
 			listIndex, err := strconv.Atoi(args[0])
 			if err != nil {
