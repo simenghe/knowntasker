@@ -26,15 +26,15 @@ import (
 // listlCmd represents the listl command
 var listlCmd = &cobra.Command{
 	Use:   "listl",
-	Short: "Listing available lists of user",
+	Short: "Shows all available Tasks Lists of the current user",
 	Run: func(cmd *cobra.Command, args []string) {
 		srv, err := taskswrapper.GetTasksService()
 		if err != nil {
 			log.Fatal("Service Problem")
 		}
 		userLists, err := taskswrapper.GetAllTasksLists(srv)
-		for i, list := range userLists.Items{
-			fmt.Printf("[%d] %s\n", i + 1, list.Title)
+		for i, list := range userLists.Items {
+			fmt.Printf("[%d] %s\n", i+1, list.Title)
 		}
 		if err != nil {
 			log.Fatalf("Problem fetching UserLists")

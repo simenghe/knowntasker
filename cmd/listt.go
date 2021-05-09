@@ -12,7 +12,7 @@ import (
 // listtCmd represents the listt command
 var listtCmd = &cobra.Command{
 	Use:   "listt",
-	Short: "List the tasks of a single list. Use -number to specify the which list, default = 1",
+	Short: "List the tasks of a single list. knowntasker listt 2 for the second list",
 	Run: func(cmd *cobra.Command, args []string) {
 		srv, err := taskswrapper.GetTasksService()
 		if err != nil {
